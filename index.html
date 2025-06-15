@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Software Engineer Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #2d46b9;
+        --secondary-color: #1e1e2c;
+        --accent-color: #4d79ff;
+        --text-color: #333;
+        --light-color: #f8f9fa;
+        --dark-color: #121212;
+        --success-color: #28a745;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-color);
+        overflow-x: hidden;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--light-color);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 5px;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 10px 0;
+        background-color: rgba(255, 255, 255, 0.98);
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo span {
+        color: var(--accent-color);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+      }
+
+      .hero-text {
+        flex: 1;
+        padding-right: 20px;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+        line-height: 1.2;
+      }
+
+      .hero h1 span {
+        color: var(--primary-color);
+        position: relative;
+        display: inline-block;
+      }
+
+      .hero h1 span::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 8px;
+        background-color: rgba(77, 121, 255, 0.3);
+        bottom: 5px;
+        left: 0;
+        z-index: -1;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: var(--text-color);
+        max-width: 600px;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(45, 70, 185, 0.2);
+      }
+
+      .btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(45, 70, 185, 0.3);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .social-icons {
+        display: flex;
+        margin-top: 30px;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .social-icons a:hover {
+        transform: translateY(-5px);
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      /* Animated background */
+      .animated-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .animated-bg span {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: rgba(45, 70, 185, 0.1);
+        animation: animate 25s linear infinite;
+        bottom: -150px;
+        border-radius: 50%;
+      }
+
+      @keyframes animate {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+          border-radius: 0;
+        }
+        100% {
+          transform: translateY(-1000px) rotate(720deg);
+          opacity: 0;
+          border-radius: 50%;
+        }
+      }
+
+      /* About Section */
+      .section {
+        padding: 100px 0;
+      }
+
+      .about {
+        background-color: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--secondary-color);
+        position: relative;
+        display: inline-block;
+        padding-bottom: 15px;
+      }
+
+      .section-title h2::after {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 3px;
+        background-color: var(--primary-color);
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-img {
+        flex: 1;
+        position: relative;
+      }
+
+      .about-img img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-img::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid var(--primary-color);
+        top: 20px;
+        left: 20px;
+        border-radius: 10px;
+        z-index: -1;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        color: var(--text-color);
+        font-size: 1.1rem;
+      }
+
+      .skills {
+        margin-top: 30px;
+      }
+
+      .skills h4 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--secondary-color);
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .skill-tag {
+        padding: 8px 15px;
+        background-color: rgba(45, 70, 185, 0.1);
+        color: var(--primary-color);
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      /* Projects Section */
+      .projects {
+        background-color: #f8f9fa;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        position: relative;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-img {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .project-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .project-card:hover .project-img img {
+        transform: scale(1.1);
+      }
+
+      .project-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        height: 100%;
+        justify-content: flex-start;
+      }
+
+      .project-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: var(--secondary-color);
+      }
+
+      .project-content p {
+        color: var(--text-color);
+        margin-bottom: 15px;
+        font-size: 1rem;
+      }
+
+      .project-tags {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .project-tag {
+        display: inline-block;
+        background: #f0f4fa;
+        color: #2563eb;
+        font-size: 0.85rem;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin: 2px 4px 2px 0;
+        font-weight: 500;
+        border: 1px solid #dbeafe;
+      }
+
+      .project-tag:hover {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+
+      .project-links {
+        margin-top: 8px;
+      }
+
+      /* Experience Section */
+      .experience {
+        background-color: white;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        background-color: var(--primary-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1.5px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 4px solid var(--primary-color);
+        border-radius: 50%;
+        top: 15px;
+        z-index: 1;
+      }
+
+      .timeline-item:nth-child(odd)::after {
+        right: -12px;
+      }
+
+      .timeline-item:nth-child(even)::after {
+        left: -12px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-date {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .timeline-title {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+        color: var(--secondary-color);
+      }
+
+      .timeline-subtitle {
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .timeline-desc {
+        font-size: 0.95rem;
+        color: var(--text-color);
+      }
+
+      /* Contact Section */
+      .contact {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        position: relative;
+      }
+
+      .contact-container {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .contact-info {
+        flex: 1;
+      }
+
+      .contact-info h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+
+      .contact-info p {
+        margin-bottom: 30px;
+        color: var(--text-color);
+        font-size: 1.1rem;
+      }
+
+      .contact-details {
+        margin-bottom: 30px;
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .contact-detail i {
+        width: 40px;
+        height: 40px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1rem;
+      }
+
+      .contact-detail span {
+        color: var(--text-color);
+        font-size: 1.1rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--secondary-color);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--secondary-color);
+        color: white;
+        padding: 50px 0 20px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .footer-col h4 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul li a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-bottom p {
+        font-size: 0.9rem;
+        color: #ddd;
+      }
+
+      /* Back to top button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(45, 70, 185, 0.3);
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-5px);
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 992px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-text {
+          padding-right: 0;
+          margin-bottom: 40px;
+        }
+
+        .hero-btns {
+          justify-content: center;
+        }
+
+        .social-icons {
+          justify-content: center;
+        }
+
+        .about-content {
+          flex-direction: column;
+        }
+
+        .about-img {
+          margin-bottom: 40px;
+        }
+
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item:nth-child(even) {
+          left: 0;
+        }
+
+        .timeline-item::after {
+          left: 20px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .navbar-container {
+          padding: 15px 5%;
+        }
+
+        .nav-links {
+          position: absolute;
+          right: 0;
+          top: 70px;
+          background-color: white;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 0;
+          transform: translateY(-150%);
+          transition: transform 0.3s ease;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          transform: translateY(0);
+        }
+
+        .nav-links li {
+          margin: 15px 0;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .hamburger.active div:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .hero {
+          height: auto;
+          min-height: 100vh;
+          padding-top: 100px;
+          padding-bottom: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .hero-content {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 60vh;
+          padding-top: 0;
+        }
+
+        .hero-text {
+          margin-bottom: 40px;
+          padding-right: 0;
+          width: 100%;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+          text-align: center;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .typing-animation {
+        border-right: 3px solid var(--primary-color);
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3.5s steps(30, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        100% {
+          border-color: var(--primary-color);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#" class="logo">Vertex<span>Global</span></a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="animated-bg">
+        <span style="--i: 11"></span>
+        <span style="--i: 12"></span>
+        <span style="--i: 24"></span>
+        <span style="--i: 10"></span>
+        <span style="--i: 14"></span>
+        <span style="--i: 23"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 19"></span>
+        <span style="--i: 20"></span>
+        <span style="--i: 22"></span>
+        <span style="--i: 25"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 21"></span>
+        <span style="--i: 15"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 26"></span>
+        <span style="--i: 17"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 28"></span>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Welcome to <span>Vertex Global</span></h1>
+          <p class="typing-animation">Your Trusted IT Consultancy Partner</p>
+          <p>
+            We deliver innovative, scalable, and secure technology solutions for
+            businesses worldwide. From digital transformation to AI integration,
+            Vertex Global empowers your growth with expert consulting and
+            development services.
+          </p>
+          <div class="hero-btns">
+            <a href="#services" class="btn">Our Services</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="pexels-thirdman-7652178.jpg" alt="Vertex Global Team" />
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Vertex Global</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-img">
+            <img
+              src="aiease_face_swap_7d2c3d54-22ac-4820-91ae-07259b37db94_1.webp"
+              alt="About Vertex Global"
+            />
+          </div>
+          <div class="about-text">
+            <h3>Empowering Businesses with Technology</h3>
+            <p>
+              Vertex Global is a leading IT consultancy with 7+ years of
+              experience delivering full-stack solutions, cloud migrations, and
+              AI-driven innovation for clients across industries.
+            </p>
+            <p>
+              Our team specializes in scalable architectures, microservices, and
+              seamless integration of emerging technologies to drive your
+              business forward.
+            </p>
+            <p>
+              We are committed to performance, security, and exceptional client
+              service.
+            </p>
+            <div class="skills">
+              <h4>Our Expertise</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Digital Transformation</span>
+                <span class="skill-tag">Cloud Solutions</span>
+                <span class="skill-tag">AI & LLM Integration</span>
+                <span class="skill-tag">Web & Mobile Development</span>
+                <span class="skill-tag">DevOps & CI/CD</span>
+                <span class="skill-tag">Data Engineering</span>
+                <span class="skill-tag">Cybersecurity</span>
+                <span class="skill-tag">Consulting</span>
+                <!-- ...add more as needed... -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Projects</h2>
+        </div>
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="Screenshot 2025-05-28 123934.png"
+                alt="E-Commerce Platform"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Enterprise E-Commerce Solution</h3>
+              <p>
+                Vertex Global delivered a robust e-commerce platform with secure
+                payment processing, user management, and a custom admin
+                dashboard for a global retailer.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+              </div>
+              <div class="project-links">
+                <a href="https://www.farfetch.com/"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="hexagon.png" alt="Project 2" />
+            </div>
+            <div class="project-content">
+              <h3>Hexagon</h3>
+              <p>
+                Hexagon is the global leader in digital reality solutions,
+                combining sensor, software and autonomous technologies.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Backbone</span>
+                <span class="project-tag">Azure</span>
+                <span class="project-tag">ASP.NET</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://hexagon.com/company/divisions/manufacturing-intelligence/msc-software"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+                <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="apixel.png" alt="Project 3" />
+            </div>
+            <div class="project-content">
+              <h3>Apixel</h3>
+              <p>
+                Apixel delivers proactive IT maintenance services through our
+                flat-rate Managed IT Support Service.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Flask</span>
+                <span class="project-tag">OpenAI API</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a href="https://apixel.co.sg"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+                <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="tresta.png" alt="Project 4" />
+            </div>
+            <div class="project-content">
+              <h3>Tresta</h3>
+              <p>
+                Tresta is a leading provider of cloud-based communication
+                solutions for businesses.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Wordpress</span>
+                <span class="project-tag">PHP</span>
+                <span class="project-tag">Debian</span>
+                <span class="project-tag">SQL</span>
+              </div>
+              <div class="project-links">
+                <a href="https://tresta.com"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+                <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="nostra.png" alt="Project 5" />
+            </div>
+            <div class="project-content">
+              <h3>Nostra Group</h3>
+              <p>
+                NOSTRA is a trailblazer in XR innovation, driven by a rich
+                history of pushing technological boundaries.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Wordpress</span>
+                <span class="project-tag">PHP</span>
+                <span class="project-tag">jQuery</span>
+              </div>
+              <div class="project-links">
+                <a href="https://nostra.group"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+                <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card">
+            <div class="project-img">
+              <img src="freeguides.png" alt="Project 6" />
+            </div>
+            <div class="project-content">
+              <h3>Free Guides</h3>
+              <p>
+                FreeGuides is a community-driven travel platform that empowers
+                anyone to create, share, and follow immersive self-guided tours.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Cloudflare</span>
+                <span class="project-tag">jQuery</span>
+                <span class="project-tag">Crisp Live Chat</span>
+              </div>
+              <div class="project-links">
+                <a href="https://freeguides.com"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+                <!-- <a href="#"><i class="fab fa-github"></i> Source Code</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <!-- <section id="experience" class="section experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2025</div>
+                        <h3 class="timeline-title">Digital Transformation Partner</h3>
+                        <h4 class="timeline-subtitle">V2 Corporation</h4>
+                        <p class="timeline-desc">Vertex Global led the digital transformation initiative, modernizing legacy systems and implementing microservices, resulting in a 40% performance boost.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Vertex Global</h2>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Let's Discuss Your IT Needs</h3>
+            <p>
+              Reach out to Vertex Global for a consultation or to learn how we
+              can help your business grow with technology.
+            </p>
+            <div class="contact-details">
+              <div class="contact-detail">
+                <i class="fas fa-envelope"></i>
+                <span>seagulls.christian@gmail.com</span>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="contact-form">
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" class="form-control" required></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-col">
+            <h4>Vertex Global</h4>
+            <p>
+              Innovative IT consultancy delivering digital solutions for modern
+              businesses.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Mobile App Development</a></li>
+              <li><a href="#">UI/UX Design</a></li>
+              <li><a href="#">Consulting</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Vertex Global. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Toggle navigation menu
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Back to top button
+      const backToTop = document.querySelector(".back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTop.classList.add("show");
+        } else {
+          backToTop.classList.remove("show");
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Form submission
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          // Here you would typically send the form data to a server
+          alert("Thank you for your message! I will get back to you soon.");
+          contactForm.reset();
+        });
+      }
+
+      // Animate elements on scroll
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll(
+          ".section-title, .about-content, .project-card, .timeline-item, .contact-container"
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
+
+      // Animated background
+      const animatedBg = document.querySelector(".animated-bg");
+      for (let i = 0; i < 15; i++) {
+        const span = document.createElement("span");
+        span.style.setProperty("--i", Math.floor(Math.random() * 30) + 1);
+        span.style.left = Math.random() * 100 + "%";
+        span.style.width = Math.random() * 30 + 10 + "px";
+        span.style.height = span.style.width;
+        span.style.animationDuration = Math.random() * 15 + 10 + "s";
+        span.style.animationDelay = Math.random() * 5 + "s";
+        animatedBg.appendChild(span);
+      }
+    </script>
+  </body>
+</html>
